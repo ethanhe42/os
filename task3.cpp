@@ -2,11 +2,13 @@
 #include<iostream>
 #include<time.h>
 #include<stdio.h>
-using namespace std;
-#define  total_instruction  100    /*Ö¸ÁîÁ÷³¤*/
-#define  M 100               /*Êµ¼ÊÒ³Êı*/
 
-#define N 5    //¿ÉÓÃÒ³ÃæÊı
+using namespace std;
+
+#define  total_instruction  100    /*æŒ‡ä»¤æµé•¿*/
+#define  M 100               /*å®é™…é¡µæ•°*/
+
+#define N 5    //å¯ç”¨é¡µé¢æ•°
 struct Pro
 {
 	int num, time;
@@ -20,20 +22,20 @@ void Input(Pro p[total_instruction])
 	int m, i, m1, m2;
 	srand((unsigned int)time(NULL));
 	m = rand() % 400;  //
-	for (i = 0; i<total_instruction;) /*²úÉúÖ¸Áî¶ÓÁĞ*/
+	for (i = 0; i<total_instruction;) /*äº§ç”ŸæŒ‡ä»¤é˜Ÿåˆ—*/
 	{
 		if (m<0 || m>399)
 		{
 			printf("When i==%d,Error,m==%d\n", i, m);
 			exit(0);
 		}
-		a[i] = m;                            /*ÈÎÑ¡Ò»Ö¸Áî·ÃÎÊµãm*/
+		a[i] = m;                            /*ä»»é€‰ä¸€æŒ‡ä»¤è®¿é—®ç‚¹m*/
 		a[i + 1] = a[i] + 1;
-		a[i + 2] = a[i] + 2;     /*Ë³ĞòÖ´ĞĞÁ½ÌõÖ¸Áî*/
-		int m1 = rand() % m; /*Ö´ĞĞÇ°µØÖ·Ö¸Áîm1 */
+		a[i + 2] = a[i] + 2;     /*é¡ºåºæ‰§è¡Œä¸¤æ¡æŒ‡ä»¤*/
+		int m1 = rand() % m; /*æ‰§è¡Œå‰åœ°å€æŒ‡ä»¤m1 */
 		a[i + 3] = m1;
 		a[i + 4] = m1 + 1;
-		a[i + 5] = m1 + 2;/*Ë³ĞòÖ´ĞĞÁ½ÌõÖ¸Áî*/
+		a[i + 5] = m1 + 2;/*é¡ºåºæ‰§è¡Œä¸¤æ¡æŒ‡ä»¤*/
 
 						  // s=(158-a[i+5])*rand( )/32767/32767/2+a[i+5]+2;
 		m2 = rand() % (157 - m1) + m1 + 3;
@@ -52,13 +54,13 @@ void Input(Pro p[total_instruction])
 		m = rand() % m2;
 
 	}
-	for (i = 0; i<total_instruction; i++) /*½«Ö¸ÁîĞòÁĞ±ä»»³ÉÒ³µØÖ·Á÷*/
+	for (i = 0; i<total_instruction; i++) /*å°†æŒ‡ä»¤åºåˆ—å˜æ¢æˆé¡µåœ°å€æµ*/
 	{
 		p[i].num = a[i] / 10;
 		p[i].time = 0;
 	}
 }
-void print(Pro *page1)//´òÓ¡µ±Ç°µÄÒ³Ãæ
+void print(Pro *page1)//æ‰“å°å½“å‰çš„é¡µé¢
 {
 	Pro *page = new Pro[N];
 	page = page1;
@@ -91,7 +93,7 @@ int Max(Pro *page1)
 	Pro *page = new Pro[N];
 	page = page1;
 	int e = page[0].time, i = 0;
-	while (i<N)//ÕÒ³öÀëÏÖÔÚÊ±¼ä×î³¤µÄÒ³Ãæ
+	while (i<N)//æ‰¾å‡ºç¦»ç°åœ¨æ—¶é—´æœ€é•¿çš„é¡µé¢
 	{
 		if (e<page[i].time)e = page[i].time;
 		i++;
@@ -129,31 +131,31 @@ int main()
 	Input(p);
 
 	do {
-		for (i = 0; i<N; i++)//³õÊÔ»¯Ò³Ãæ»ù±¾Çé¿ö
+		for (i = 0; i<N; i++)//åˆè¯•åŒ–é¡µé¢åŸºæœ¬æƒ…å†µ
 		{
 			page[i].num = -1;
 			page[i].time = 2 - i;
 		}
-		printf("ÏµÍ³²úÉúµÄËæ»úÊıÎª£º");
+		printf("ç³»ç»Ÿäº§ç”Ÿçš„éšæœºæ•°ä¸ºï¼š");
 		for (int e = 0; e<M; e++)
 			cout << p[e].num << " ";
 		cout << endl;
 		i = 0;
-		cout << "f:FIFOÒ³ÃæÖÃ»»" << endl;
-		cout << "l:LRUÒ³ÃæÖÃ»»" << endl;
-		cout << "o:OPTÒ³ÃæÖÃ»»" << endl;
-		cout << "n:NURÒ³ÃæÖÃ»»" << endl;
-		cout << "°´ÆäËü¼ü½áÊø" << endl;
+		cout << "f:FIFOé¡µé¢ç½®æ¢" << endl;
+		cout << "l:LRUé¡µé¢ç½®æ¢" << endl;
+		cout << "o:OPTé¡µé¢ç½®æ¢" << endl;
+		cout << "n:NURé¡µé¢ç½®æ¢" << endl;
+		cout << "æŒ‰å…¶å®ƒé”®ç»“æŸ" << endl;
 		cin >> c;
 
-		if (c == 'f')//FIFOÒ³ÃæÖÃ»»
+		if (c == 'f')//FIFOé¡µé¢ç½®æ¢
 		{
 			n = 0;
-			cout << "Ò³ÃæÖÃ»»Çé¿ö:   " << endl;
+			cout << "é¡µé¢ç½®æ¢æƒ…å†µ:   " << endl;
 			while (i< total_instruction)
 			{
 				if (Search(p[i].num, page) >= 0)
-					i++;//ÕÒµ½ÏàÍ¬µÄÒ³Ãæ
+					i++;//æ‰¾åˆ°ç›¸åŒçš„é¡µé¢
 				else
 				{
 					if (t == N)t = 0;
@@ -166,13 +168,13 @@ int main()
 					}
 				}
 			}
-			cout << "È±Ò³´ÎÊı£º" << n << "    ÃüÖĞÂÊ£º" << 1 - n / total_instruction << endl;
+			cout << "ç¼ºé¡µæ¬¡æ•°ï¼š" << n << "    å‘½ä¸­ç‡ï¼š" << 1 - n / total_instruction << endl;
 		}
-		if (c == 'n')//NURÒ³ÃæÖÃ»»
+		if (c == 'n')//NURé¡µé¢ç½®æ¢
 		{
 			n = 0;
-			cout << "ÉèCLEAR_PERIODÎª5" << endl;
-			cout << "Ò³ÃæÖÃ»»Çé¿ö:   " << endl;
+			cout << "è®¾CLEAR_PERIODä¸º5" << endl;
+			cout << "é¡µé¢ç½®æ¢æƒ…å†µ:   " << endl;
 			int period = 0;
 			int time_set;
 			while (i < total_instruction) 
@@ -202,13 +204,13 @@ int main()
 				i++;
 				period++;
 			}
-			cout << "È±Ò³´ÎÊı£º" << n << "    ÃüÖĞÂÊ£º" << 1 - n / total_instruction << endl;
+			cout << "ç¼ºé¡µæ¬¡æ•°ï¼š" << n << "    å‘½ä¸­ç‡ï¼š" << 1 - n / total_instruction << endl;
 		}
 
-		if (c == 'l')//LRUÒ³ÃæÖÃ»»
+		if (c == 'l')//LRUé¡µé¢ç½®æ¢
 		{
 			n = 0;
-			cout << "Ò³ÃæÖÃ»»Çé¿ö:   " << endl;
+			cout << "é¡µé¢ç½®æ¢æƒ…å†µ:   " << endl;
 			while (i<total_instruction)
 			{
 				int k;
@@ -232,9 +234,9 @@ int main()
 				if (k == -1)   print(page);
 				i++;
 			}
-			cout << "È±Ò³´ÎÊı£º" << n << "    ÃüÖĞÂÊ£º" << 1 - n / total_instruction << endl;
+			cout << "ç¼ºé¡µæ¬¡æ•°ï¼š" << n << "    å‘½ä¸­ç‡ï¼š" << 1 - n / total_instruction << endl;
 		}
-		if (c == 'o')//OPTÒ³ÃæÖÃ»»
+		if (c == 'o')//OPTé¡µé¢ç½®æ¢
 		{
 			n = 0;
 			while (i<total_instruction)
@@ -271,7 +273,7 @@ int main()
 					}
 				}
 			}
-			cout << "È±Ò³´ÎÊı£º" << n << "    ÃüÖĞÂÊ£º" << 1 - n / total_instruction << endl;
+			cout << "ç¼ºé¡µæ¬¡æ•°ï¼š" << n << "    å‘½ä¸­ç‡ï¼š" << 1 - n / total_instruction << endl;
 		}
 	} while (c == 'f' || c == 'l' || c == 'o'|| c == 'n');
 	return 0;
